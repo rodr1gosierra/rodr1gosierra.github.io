@@ -1,7 +1,11 @@
 const email = document.getElementById("email")
 const password = document.getElementById("password")
 
-document.getElementById("ingresar").addEventListener("click", irAPortada)
+document.getElementById("ingresar").addEventListener("click", function () {
+    irAPortada();
+    guardarUsuario();
+
+})
 
 
 function irAPortada(){
@@ -9,5 +13,11 @@ function irAPortada(){
         window.location.href = "portada.html";
     } else {
         alert("Debes ingresar los datos")
+    }
+}
+
+function guardarUsuario(){
+    if (email.value.length > 0){
+        localStorage.setItem("username", email.value)
     }
 }
