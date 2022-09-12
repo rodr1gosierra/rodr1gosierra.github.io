@@ -45,7 +45,7 @@ function showProductsList(array) {
     }
 
     document.getElementById("products-list-container").innerHTML = htmlContentToAppend;
-    // ponerle el +??
+    // 
 }
 
 
@@ -98,7 +98,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
         showProductsList(currentProductsArray);
     })
 
-    //boton de filtrar//
+    //Botón de filtrar//
     document.getElementById("rangeFilterPrice").addEventListener("click", function () {
 
         if (document.getElementById("rangeFilterPriceMin").value != "") {

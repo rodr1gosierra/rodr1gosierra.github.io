@@ -7,7 +7,7 @@ document.getElementById("ingresar").addEventListener("click", function () {
 
 })
 
-
+//Validar datos//
 function irAPortada(){
     if (email.value.length > 0 && password.value.length > 0){
         window.location.href = "portada.html";
@@ -16,6 +16,7 @@ function irAPortada(){
     }
 }
 
+//Local storage para el usuario//
 function guardarUsuario(){
     if (email.value.length > 0){
         localStorage.setItem("username", email.value)

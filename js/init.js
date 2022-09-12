@@ -40,6 +40,7 @@ let getJSONData = function(url){
     });
 }
 
+//Mostrar usuario//
 let usuario = document.getElementById("usuario")
 
 usuario.innerHTML = localStorage.getItem("username")
