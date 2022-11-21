@@ -1,24 +1,19 @@
-const email = document.getElementById("email")
-const password = document.getElementById("password")
+const email = document.getElementById("email");
+const password = document.getElementById("password");
+const alerta = document.getElementById("alert-error");
 
 document.getElementById("ingresar").addEventListener("click", function () {
     irAPortada();
-    guardarUsuario();
+});
 
-})
-
-//Validar datos//
+//Validar datos y guarda el usuario//
 function irAPortada(){
-    if (email.value.length > 0 && password.value.length > 0){
+    if (email.value != "" && password.value != ""){
         window.location.href = "portada.html";
+        localStorage.setItem("username", email.value);
     } else {
-        alert("Debes ingresar los datos")
-    }
-}
+        alerta.classList.add("show");
+        setTimeout(function () { alerta.classList.remove("show") }, 2000);
+    };
+};
 
-//Local storage para el usuario//
-function guardarUsuario(){
-    if (email.value.length > 0){
-        localStorage.setItem("username", email.value)
-    }
-}

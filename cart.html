@@ -29,18 +29,16 @@
           <li class="nav-item">
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
-          <li class="nav-item">
-            <p id="usuario" class="nav-link"></p>
-          </li>
+          <div class="dropdown" id="menuDesplegable">
+            
+          </div>
         </ul>
       </div>
     </div>
   </nav>
   <main>
-    <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
-      </div>
+    <div class="container" id="userContainer">
+      
     </div>
   </main>
   <footer class="text-muted">
@@ -53,6 +51,9 @@
       <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
     </div>
   </footer>
+  <div class="alert alert-success fade" id="alert-success" role="alert">
+    ¡Has comprado con éxito!
+  </div>
   <div id="spinner-wrapper">
     <div class="lds-ring">
       <div></div>

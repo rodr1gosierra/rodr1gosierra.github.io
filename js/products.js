@@ -1,11 +1,11 @@
 //https://japceibal.github.io/emercado-api/cats_products/101.json
 
-const AUTOS_URL = "https://japceibal.github.io/emercado-api/cats_products/101.json"
 let currentProductsArray = [];
 let category = localStorage.getItem("catID");
 const PRODUCT = PRODUCTS_URL + category + EXT_TYPE;
 let minPrice = undefined;
 let maxPrice = undefined;
+let search = "";
 
 
 function showProductsList(array) {
@@ -17,28 +17,35 @@ function showProductsList(array) {
     for (let i = 0; i < array.products.length; i++) {
         let prod = array.products[i];
 
-        console.log("minimo: " + typeof minPrice);
+        //console.log(typeof prod.description);
 
 
         if ((prod.cost >= minPrice || minPrice == undefined) && (prod.cost <= maxPrice || maxPrice == undefined)) {
 
+            if (prod.name.toLowerCase().includes(search.toLowerCase()) || prod.description.toLowerCase().includes(search.toLowerCase()) || search == "") {
 
-            htmlContentToAppend += `
-            
-                <div class="row">
-                    <div class="col-3">
-                        <img src="${prod.image}" class="img-thumbnail">
-                    </div>
-                    <div class="col">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h4 class="mb-1">${prod.name} - ` + prod.currency + ' ' + prod.cost + `</h4>
-                            <small class="text-muted">${prod.soldCount} vendidos</small>
+                htmlContentToAppend += `
+                <div onclick="setProdID(${prod.id})" class="list-group-item list-group-item-action cursor-active">
+                    <div class="row">
+                        <div class="col-3">
+                            <img src="${prod.image}" class="img-thumbnail">
                         </div>
-                        <p class="mb-1">${prod.description}</p>
+                        <div class="col">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h4 class="mb-1">${prod.name} - ` + prod.currency + ' ' + prod.cost + `</h4>
+                                <small class="text-muted">${prod.soldCount} vendidos</small>
+                            </div>
+                            <p class="mb-1">${prod.description}</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            `
+                `
+
+
+            }
+
+
+
 
         }
 
@@ -48,14 +55,12 @@ function showProductsList(array) {
     // 
 }
 
+//Función para guardar el id del producto y redirigir hacia product-info//
+function setProdID(id) {
+    localStorage.setItem("prodID", id);
+    window.location = "product-info.html"
+}
 
-/*
--
--
--
--
--
-*/
 
 document.addEventListener("DOMContentLoaded", function (e) {
     getJSONData(PRODUCT).then(function (resultObj) {
@@ -129,5 +134,11 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
         showProductsList(currentProductsArray);
     });
+
+    document.getElementById("search").addEventListener("input", function () {
+        search = document.getElementById("search").value;
+
+        showProductsList(currentProductsArray);
+    })
 })
 
